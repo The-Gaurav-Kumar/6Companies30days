@@ -1,0 +1,19 @@
+	ull getNthUglyNo(int n) {
+	    ull arr[n];
+	    arr[0]=1;
+	    int i2=0,i3=0,i5=0;
+	    for(int i=1;i<n;i++)
+	    {
+	        ull ugly=min(arr[i2]*2,min(arr[i3]*3,arr[i5]*5));
+	        if(ugly==arr[i-1])
+	            i--;
+	        if(ugly==(arr[i2]*2))
+	            i2++;
+	        else if(ugly==(arr[i3]*3))
+	            i3++;
+	        else if(ugly==(arr[i5]*5))
+	            i5++;
+	         arr[i]=ugly;
+	    }
+	    return arr[n-1];
+	}
