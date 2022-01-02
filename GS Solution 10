@@ -1,0 +1,24 @@
+vector<int>  maxnumbers(int arr[], int n)
+    {
+        priority_queue<int, vector<int>, greater<int> > pq;
+        for(int i=0;i<n;i++)
+        {
+            if(i<10)
+                pq.push(arr[i]);
+            else
+            {
+                int mn=pq.top();
+                if(arr[i]>mn)
+                {
+                    pq.pop();
+                    pq.push(arr[i]);
+                }
+            }
+        }
+        vector<int> v;
+        while (!pq.empty()) {
+            v.push_back(pq.top());
+            pq.pop();
+        }
+        return v;
+    }
