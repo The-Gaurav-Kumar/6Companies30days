@@ -1,0 +1,64 @@
+int C,D;
+	int vis[100001];
+    //Function to find if the given edge is a bridge in graph.
+    void dfs(int v,vector<int> adj[])
+    {
+        vis[v]=1;
+        for(auto child:adj[v])
+        {
+            if(!vis[child])
+                dfs(child,adj);
+        }
+    }
+    void dfs2(int v,vector<int> adj[])
+    {
+        vis[v]=1;
+        for(auto child:adj[v])
+        {
+            if((v==C&&child==D)||(v==D&&child==C))
+            {
+                //cout<<"yo";
+            }
+            else
+            {
+                //cout<<v<<" "<<child<<endl;
+            if(!vis[child])
+                dfs2(child,adj);
+            }
+
+        }
+    }
+    int isBridge(int V, vector<int> adj[], int c, int d) 
+    {
+        C=c,D=d;
+        for(int i=0;i<V;i++)
+        {
+            vis[i]=0;
+        }
+        int cc1=0,cc2=0;
+        for(int i=0;i<V;i++)
+        {
+            if(!vis[i])
+            {
+                dfs(i,adj);
+                cc1++;
+            }
+        }
+        for(int i=0;i<V;i++)
+        {
+            vis[i]=0;
+        }
+        for(int i=0;i<V;i++)
+        {
+            if(!vis[i])
+            {
+                dfs2(i,adj);
+                cc2++;
+            }
+        }
+        //cout<<cc1<<" "<<cc2<<endl;
+        if(cc1==cc2)
+            return 0;
+        else
+            return 1;
+    }
