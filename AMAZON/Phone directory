@@ -1,0 +1,31 @@
+vector<vector<string>> displayContacts(int n, string contact[], string s)
+    {
+        sort(contact,contact+n);
+       unordered_map<string,vector<string>> ump;
+       unordered_map<string,int> mp;
+       vector<vector<string>> ans;
+       for(int i=0;i<n;i++)
+       {
+           if(mp[contact[i]]==0){
+            mp[contact[i]]=1;
+            string str="";
+           for(int j=0;j<contact[i].length();j++)
+           {
+               str+=contact[i][j];
+               ump[str].push_back(contact[i]);
+           }
+           }
+       }
+       string str="";
+       vector<string> v;
+       v.push_back("0");
+       for(int i=0;i<s.length();i++)
+       {
+           str+=s[i];
+           if(ump[str].size()!=0)
+               ans.push_back(ump[str]);
+           else
+               ans.push_back(v);
+       }
+       return ans;
+    }
