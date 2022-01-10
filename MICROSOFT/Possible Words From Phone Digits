@@ -1,0 +1,24 @@
+vector<vector<string>> ch;
+    vector<string> help(int i,int n,int a[])
+    {
+        if(i==n-1)
+        {
+            return ch[a[i]-2];
+        }
+        vector<string> v;
+        for(int j=0;j<ch[a[i]-2].size();j++)
+        {
+            vector<string> nxt=help(i+1,n,a);
+            string s=ch[a[i]-2][j];
+            for(int k=0;k<nxt.size();k++)
+            {
+                v.push_back(s+nxt[k]);
+            }
+        }
+        return v;
+    }
+    vector<string> possibleWords(int a[], int N)
+    {
+        ch={{"a","b","c"},{"d","e","f"},{"g","h","i"},{"j","k","l"},{"m","n","o"},{"p","q","r","s"},{"t","u","v"},{"w","x","y","z"}};
+        return help(0,N,a);
+    }
