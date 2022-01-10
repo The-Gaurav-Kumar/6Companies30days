@@ -1,0 +1,81 @@
+bool isValid(int i,int j,int n,int m)
+    {
+        if((i>=0)&&(i<n)&&(j>=0)&&(j<m))
+            return true;
+        return false;
+    }
+    int findMaxArea(vector<vector<int>>& grid) {
+        queue<int> q;
+        int n=grid.size(),m=grid[0].size(),ans=0;
+        for(int i=0;i<grid.size();i++)
+        {
+            for(int j=0;j<grid[0].size();j++)
+            {
+                if(grid[i][j]==1)
+                {
+                    queue<pair<int,int>> q;
+                    q.push({i,j});
+                    grid[i][j]=0;
+                    int count=1;
+                    while(!q.empty())
+                    {
+                        int x=q.front().first;
+                        int y=q.front().second;
+                        q.pop();
+                        //cout<<x<<" "<<y<<endl;
+                         if(isValid(x+1,y,n,m)&&(grid[x+1][y]==1))
+                        {
+                            count++;
+                            grid[x+1][y]=0;
+                            q.push({x+1,y});
+                        }
+                        if(isValid(x-1,y,n,m)&&(grid[x-1][y]==1))
+                        {
+                            count++;
+                            grid[x-1][y]=0;
+                             q.push({x-1,y});
+                        }
+                        if(isValid(x,y+1,n,m)&&(grid[x][y+1]==1))
+                        {
+                            count++;
+                            grid[x][y+1]=0;
+                             q.push({x,y+1});
+                        }
+                        if(isValid(x,y-1,n,m)&&(grid[x][y-1]==1))
+                        {
+                            count++;
+                            grid[x][y-1]=0;
+                            q.push({x,y-1});
+                        }
+                        
+                         if(isValid(x+1,y+1,n,m)&&(grid[x+1][y+1]==1))
+                        {
+                            count++;
+                            grid[x+1][y+1]=0;
+                            q.push({x+1,y+1});
+                        }
+                        if(isValid(x-1,y-1,n,m)&&(grid[x-1][y-1]==1))
+                        {
+                            count++;
+                            grid[x-1][y-1]=0;
+                             q.push({x-1,y-1});
+                        }
+                        if(isValid(x-1,y+1,n,m)&&(grid[x-1][y+1]==1))
+                        {
+                            count++;
+                            grid[x-1][y+1]=0;
+                             q.push({x-1,y+1});
+                        }
+                        if(isValid(x+1,y-1,n,m)&&(grid[x+1][y-1]==1))
+                        {
+                            count++;
+                            grid[x+1][y-1]=0;
+                            q.push({x+1,y-1});
+                        }
+                    }
+                    ans=max(ans,count);
+                }
+            }
+        }
+        return ans;
+    }
