@@ -1,0 +1,38 @@
+ int *findTwoElement(int *arr, int n) {
+        long long int x1=0,y1,x2=0,y2,temp,x,y;
+        for(int i=0;i<n;i++)
+        {
+            x1+=arr[i];
+            x2+=(((long long int)arr[i])*((long long int)arr[i]));
+        }
+        long long int N=n;
+        y1=(N*(N+1))/2;
+        int flag=0;
+         y2=((N)*(N+1)*(2*N+1))/6;
+        if(y1>x1)
+        {
+            flag=1;
+            swap(x1,y1);
+            swap(x2,y2);
+        }
+       
+       
+        //cout<<x1<<" "<<x2<<" "<<y1<<" "<<y2<<endl;
+        temp=x1-y1;
+        long long int sq=x2-y2;
+        
+        long long int k=sq/temp;
+        x=(k+temp)/2;
+        y=(k-temp)/2;
+         int *ans=new int[2];
+         if(flag){
+         ans[0]=y;
+         ans[1]=x;
+         }
+         else
+         {
+             ans[0]=x;
+            ans[1]=y;
+         }
+        return ans;
+    }
