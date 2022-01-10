@@ -1,0 +1,16 @@
+string colName (long long int n)
+    {
+        string s="";
+        while(n>0)
+        {
+            int temp=n%26;
+            if(temp==0)
+            {
+                temp=26;
+                n=n-26;
+            }
+            s=(char)(64+temp)+s;
+            n=n/26;
+        }
+        return s;
+    }
