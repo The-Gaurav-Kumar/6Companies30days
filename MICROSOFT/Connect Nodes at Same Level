@@ -1,0 +1,41 @@
+void connect(Node *A)
+    {
+        Node *ff,*kk=NULL;
+    queue<Node*> q;
+    q.push(A);
+    /*ff=q.front();
+    if(ff->left)
+       q.push(temp->left);
+      if(ff->right)
+          q.push(temp->right);
+     q.pop();
+    A->next=NULL;*/
+
+    while(!q.empty())
+    {
+        int ss=q.size();
+        ff=q.front();
+        if(ff->left)
+           q.push(ff->left);
+       if(ff->right)
+           q.push(ff->right);
+       q.pop();
+       ss--;
+        while(ss--)
+        {
+            Node* temp=q.front();
+            ff->nextRight=temp;
+            if(temp->left)
+            {
+                q.push(temp->left);
+            }
+            if(temp->right)
+            {
+                q.push(temp->right);
+            }
+            ff=temp;
+            q.pop();
+        }
+        ff->nextRight=NULL;
+    }
+    }    
