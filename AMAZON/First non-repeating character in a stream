@@ -1,0 +1,19 @@
+	string FirstNonRepeating(string A){
+		    queue<int> q;
+		    q.push(A[0]);
+		    unordered_map<int,int> ump;
+		    ump[A[0]]++;
+		    for(int i=1;i<A.length();i++)
+		    {
+		        ump[A[i]]++;
+		        if(ump[A[i]]==1)
+		        q.push(A[i]);
+		        while(!q.empty()&&ump[q.front()]>1)
+		            q.pop();
+		        if(q.empty())
+		            A[i]='#';
+    		    else
+    		        A[i]=(char)q.front();
+		    }
+		    return A;
+		}
