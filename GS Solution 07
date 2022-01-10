@@ -1,6 +1,0 @@
-int findPosition(int N , int M , int K) {
-        int temp=(M%N+K-1)%N;
-        if(temp==0)
-            temp=N;
-        return temp;
-    }
