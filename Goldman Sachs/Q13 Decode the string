@@ -1,0 +1,49 @@
+int i;
+    string help(string s,int k)
+    {
+        int num=0;
+        string ss="";
+        for(i=k+1;i<s.length();i++)
+        {
+            if(s[i]>=48&&s[i]<58)
+                num=num*10+s[i]-48;
+            else if(s[i]=='[')
+            {
+                string str=help(s,i);
+                //cout<<num<<endl;
+                while(num--)
+                    ss+=str;
+                num=0;
+            }
+            else if(s[i]==']')
+                return ss;
+            else
+                ss+=s[i];
+                
+        }
+        return ss;
+          
+    }
+     string decodedString(string s){
+        int num=0;
+        string ss="";
+        for(i=0;i<s.length();i++)
+        {
+            if(s[i]>=48&&s[i]<58)
+                num=num*10+s[i]-48;
+            else if(s[i]=='[')
+            {
+                string str=help(s,i);
+                while(num--)
+                    ss+=str;
+                num=0;
+            }
+            else if(s[i]==']')
+                return ss;
+            else
+                ss+=s[i];
+                
+        }
+        return ss;
+        
+    }
